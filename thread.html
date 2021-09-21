@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+   
+    <title>Fantasy Hockey Manager</title>
+
+    <link rel = "icon" href = 
+    "logo-image.png" 
+            type = "image/x-icon">
+    </head>
+
+<body>
+    <nav class="global-nav-bar">
+        <img src="logo-image.png" style="width:50px;height:50px;padding-left: 15px;">
+        <a class="branding">Fantasy Hockey Manager</a>
+        <div class="nav-items">
+            <ul> 
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li>
+                    <a class="active" href="forumPage.html">Board</a>
+                </li>
+                <li>
+                    <a>Teams</a>
+                </li>
+                <li>
+                    <a href="rosterPage.html">My Team</a> <!-- Maybe replace this with user name?-->
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="main">
+        <div class="header">
+        </div>
+        <textarea></textarea>
+        <button>add comment</button>
+        <div class="comments">
+
+        </div>
+    </div>
+<script src="data.js"></script>
+<script>
+    console.log(threads);
+    var id = window.location.search.slice(1);
+    var thread = threads.find(t => t.id == id);
+    console.log(id);
+    console.log(thread);
+    var header = document.querySelector('.header');
+    var headerHtml = `
+        <h4 class="title">
+                ${thread.title}
+        </h4>
+        <div class="bottom">
+            <p class="timestamp">
+                ${new Date(thread.date).toLocaleString()}
+            </p>
+            <p class="comment-count">
+                ${thread.comments.length} comments
+            </p>
+            </div>
+    `
+    header.insertAdjacentHTML('beforeend', headerHtml);
+
+    function addComment(comment) {
+            var commentHtml = `
+                <div class="comment">
+                    <div class="top-comment">
+                        <p class="user">
+                            ${comment.author}
+                        </p>
+                        <p class="timestamp">
+                            ${new Date(comment.date).toLocaleString()}
+                        </p>
+                    </div>
+                    <div class="comment-content">
+                        ${comment.content}
+                    </div>
+                </div>
+            `
+            comments.insertAdjacentHTML('beforeend', commentHtml);
+        }
+
+    var comments = document.querySelector('.comments');
+    for (let comment of thread.comments) {
+        addComment(comment);
+    }
+
+    var btn = document.querySelector('button');
+    btn.addEventListener('click', function() {
+        var txt = document.querySelector('textarea');
+        var comment = {
+            content: txt.value,
+            date: Date.now(),
+            author: 'Aaron'
+        }
+        addComment(comment);
+        txt.value = '';
+    })
+
+</script>
+<style>
+    h1, h4, ol {
+        margin: 0;
+    }
+    p {
+        margin: 5px 0;
+    }
+    button {
+        display: block;
+        margin: 10px 0;
+    }
+</style>
+</body>
+    

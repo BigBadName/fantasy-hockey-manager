@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+   
+    <title>Fantasy Hockey Manager</title>
+
+    <link rel = "icon" href = 
+    "logo-image.png" 
+            type = "image/x-icon">
+    </head>
+
+<body>
+    <nav class="global-nav-bar">
+        <img src="logo-image.png" style="width:50px;height:50px;padding-left: 15px;">
+        <a class="branding">Fantasy Hockey Manager</a>
+        <div class="nav-items">
+            <ul> 
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li>
+                    <a class="active" href="#">Board</a>
+                </li>
+                <li>
+                    <a href="rosterPage.html">My Team</a> <!-- Maybe replace this with user name?-->
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <ol>
+
+    </ol>
+<script src="data.js"></script>
+<script>
+    console.log(threads);
+    var container = document.querySelector('ol')
+    for (let thread of threads) {
+        var html = `
+        <li class="row">
+            <a href="/thread.html?${thread.id}">
+                <h4 class="title">
+                    ${thread.title}
+                </h4>
+                <div class="bottom">
+                    <p class="timestamp">
+                       ${new Date(thread.date).toLocaleDateString()}
+                    </p>
+                    <p class="comment-count">
+                        ${thread.comments.length} comments
+                    </p>
+                </div>
+            </a>
+        </li>
+        `
+        container.insertAdjacentHTML('beforeend', html)
+    }
+</script>
+<style>
+    h1, h4, ol {
+        margin: 0;
+    }
+    p {
+        margin: 5px 0;
+    }
+</style>
+</body>

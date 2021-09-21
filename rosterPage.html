@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+   
+    <title>Fantasy Hockey Manager</title>
+
+    <link rel = "icon" href = 
+    "logo-image.png" 
+            type = "image/x-icon">
+    </head>
+
+<body> <!-- BODY STARTS HERE. -->
+    <nav class="global-nav-bar">
+        <img src="logo-image.png" style="width:50px;height:50px;padding-left: 15px;">
+        <a class="branding">Fantasy Hockey Manager</a>
+        <div class="nav-items">
+            <ul> 
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li>
+                    <a href="forumPage.html">Board</a>
+                </li>
+                <li>
+                    <a class="active" href="#">My Team</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="main-content"> 
+        <h1>My team</h1>
+        <h2>Pro:</h2>
+        <table id="for-pro" class="pro-roster">
+            <thead>
+                <tr>
+                    <th>Forwards</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+
+        <table id="def-pro" class="pro-roster">
+            <thead>
+                <tr>
+                    <th>Defense</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+
+
+        <table id="goa-pro" class="pro-roster">
+            <thead>
+                <tr>
+                    <th>Goalies</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+        <h3>Add player to pro roster. Enter name and select position.</h3>
+        <input type="text" id="pro-name" placeholder="Enter player name"><br>
+        
+        <input type="radio" id="forward" name="position" value="forward">
+        <label for="forward">Forward</label><br>
+        <input type="radio" id="defense" name="position" value="defense">
+        <label for="defense">Defense</label><br>
+        <input type="radio" id="goalie" name="position" value="goalie">
+        <label for="goalie">Goalie</label><br>
+        <button id="pro-button">Add</button>
+<!--         <input type="button" id="delete-pro-players" value="Delete" onclick="removeProPlayersFromTable()">
+ -->        <hr>
+
+        <h2>Prospects:</h2>
+        <p>Number of prospects:</p>
+        <p>num</p>
+        <p>/30</p>
+        <table id="for-prospect" class="am-roster">
+            <thead>
+                <tr>
+                    <th>Forwards</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+        
+        <table id="def-prospect" class="am-roster">
+            <thead>
+                <tr>
+                    <th>Forwards</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+        <table id="goa-prospect" class="am-roster">
+            <thead>
+                <tr>
+                    <th>Forwards</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+
+        <h3>Add player to prospects. Enter name and select position.</h3>
+        <input type="text" id="prospect-name" placeholder="Enter player name"><br>
+        
+        <input type="radio" id="prospect-forward" name="position" value="forward">
+        <label for="forward">Forward</label><br>
+        <input type="radio" id="prospect-defense" name="position" value="defense">
+        <label for="defense">Defense</label><br>
+        <input type="radio" id="prospect-goalie" name="position" value="goalie">
+        <label for="goalie">Goalie</label><br>
+        <button id="prospect-button">Add</button>
+        <hr>
+        
+    </div>
+
+    <script src="script.js"> </script>
+
+    <!-- Insert this script at the bottom of the HTML, but before you use any Firebase services -->
+    
+    <!-- Add the entire Firebase JavaScript SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase.js"></script>
+
+
+
+    <script>
+
+      // Set the configuration for your app
+    // TODO: Replace with your project's config object
+    var config = {
+        apiKey: "AIzaSyAQ9z3Crp9jBgcKNcNRAVSEtI_QkbuhS0c",
+        authDomain: "fantasyhockeysite.firebaseapp.com",
+        // For databases not in the us-central1 location, databaseURL will be of the
+        // form https://[databaseName].[region].firebasedatabase.app.
+        // For example, https://your-database-123.europe-west1.firebasedatabase.app
+        databaseURL: "https://fantasyhockeysite-default-rtdb.firebaseio.com",
+        storageBucket: "fantasyhockeysite.appspot.com"
+    };
+    firebase.initializeApp(config);
+
+    // Get a reference to the database service
+    var database = firebase.database();
+
+
+    // prepare data to be inserted into the database.
+
+    var enteredPlayerName, position, status;
+
+    function proReady(){
+        enteredPlayerName = document.getElementById('pro-name').value;
+        if (document.getElementById('forward').checked) {
+            position = "forward";
+        }
+        else if (document.getElementById('defense').checked) {
+            position = "defense";
+        }
+        else if (document.getElementById('goalie').checked){
+            position = "goalie";
+        }
+        status = "pro";
+    }
+
+
+    document.getElementById('pro-button').onclick = function(){
+        proReady();
+        database.ref('player/' + enteredPlayerName).set({
+            PlayerName: enteredPlayerName,
+            Position: position,
+            Status: status
+        });
+    }
+    
+    </script>
+
+</body>
+</html>

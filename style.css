@@ -1,0 +1,99 @@
+body {
+    background-color: whitesmoke;
+    margin: 10px;
+}
+a {
+    text-decoration: none; /* this removes hyperlink formatting */
+}
+.global-nav-bar {
+    background-color: #333333;
+    display: flex;
+    align-items: center;
+}
+
+.global-nav-bar a {
+    color: #e7e7e7;
+}
+
+.global-nav-bar ul {
+  margin: 0;
+  padding: 0;
+  /* Let's remove the bullet points */
+  list-style-type: none;
+  /* display the list flex and align the items centered */
+  display: flex;
+  align-items:center
+}
+
+.global-nav-bar .branding {
+    display: block;
+    color: blue;
+    text-shadow: whitesmoke;
+    padding: 0 24px;
+    font-size: 24px;
+}
+
+.global-nav-bar ul li a {
+    color: #e7e7e7;
+    padding: 24px;
+    /*Let's make the anchor display block.
+       This will ensure when we hover, focus, or is active we get the full width and height 
+        of the container.
+    */
+    display: block;
+  }
+  
+  /* When a use hovers or focuses a link change the background */
+  .global-nav-bar ul a:hover,
+  .global-nav-bar ul a:focus,
+  .global-nav-bar ul .active {
+    background-color: #272727;
+  }
+
+  .pro-roster {
+      display: inline-block;
+  }
+  .am-roster {
+    display: inline-block;
+  }
+  .tables-pro {
+    display: inline-block;
+  }
+
+  table, th, td {
+      border: 1px solid #000;
+      border-collapse: collapse;
+      color: black;
+      
+  }
+  th, td {
+    padding: 10px;
+  }
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  .bottom, .top-comment {
+    display: flex;
+    color: grey;
+    font-size: 12px;
+  }
+  .main {
+    background-color: #F6F6EF;
+    padding: 10px 15px;
+  }
+  .row {
+    padding: 5px 0;
+  }
+  .timestamp {
+    padding-right: 10px;
+  }
+  .comments {
+    margin: 40px 0;
+  }
+  textarea {
+    width: 80%;
+    height: 80px;
+  }
+
